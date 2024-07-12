@@ -17,9 +17,9 @@
                 <li class="nav-item {{ Request::routeIs('cars') ? 'active' : '' }}">
                     <a href="{{ route('cars') }}" class="nav-link">Cars</a>
                 </li>
-                <li class="nav-item {{ Request::routeIs('contact') ? 'active' : '' }}">
+                {{-- <li class="nav-item {{ Request::routeIs('contact') ? 'active' : '' }}">
                     <a href="{{ route('contact') }}" class="nav-link">Contact</a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

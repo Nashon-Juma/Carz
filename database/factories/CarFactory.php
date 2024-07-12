@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Car;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CarFactory extends Factory
@@ -22,10 +23,11 @@ class CarFactory extends Factory
     public function definition()
     {
         return [
-            'img' => 'https://source.unsplash.com/random/640x480?car=' . $this->faker->unique()->numberBetween(1, 1000),
+            'user_id' => $this->faker->numberBetween(1, 100),
+            'img' => \Faker\Factory::create()->unique()->imageUrl($width = 640, $height = 480, 'cars'),
             'make' => $this->faker->randomElement(['Toyota', 'Honda', 'Ford', 'Chevrolet', 'BMW']),
             'model' => $this->faker->word,
-            'milage' => $this->faker->numberBetween(10000, 100000) . ' km',
+            'milage' => $this->faker->numberBetween(10000, 100000),
             'transmission' => $this->faker->randomElement(['Automatic', 'Manual']),
             'seats' => $this->faker->numberBetween(2, 7),
             'luggage' => $this->faker->numberBetween(1, 5),

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id'); // Foreign key to users table (client)
             $table->string('img');
             $table->string('make');
             $table->string('model');
@@ -21,7 +22,6 @@ return new class extends Migration
             $table->string('seats');
             $table->string('luggage');
             $table->string('fuel');
-            $table->json('features')->nullable(); 
             $table->string('category');
             $table->string('description');
             $table->year('year');
@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string('leasing');
             $table->decimal('price_per_hour', 8, 2);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
