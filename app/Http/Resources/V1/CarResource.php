@@ -38,9 +38,9 @@ class CarResource extends JsonResource
                 'leasing' => $this->leasing,
                 'price_per_hour' => $this->price_per_hour
             ],
-            'includes'=>[
-                new UserResource($this->user)
-            ],
+            'includes'=>
+                new UserResource($this->whenLoaded('user'))
+            ,
             'links' => [
                 'self' => route('cars.show', ['car' => $this->id]),
             ],

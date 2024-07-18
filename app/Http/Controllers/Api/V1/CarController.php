@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Car;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\StoreCarRequest;
 use App\Http\Requests\Api\V1\UpdateCarRequest;
 use App\Http\Resources\V1\CarResource;
 
-class CarController extends Controller
+class CarController extends ApiController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        if 
-        $cars = Car::paginate(10);
-        return CarResource::collection($cars);
+        if ($this->include('owner')){
+            return CarResource::collection(Car::with('user')->paginate());
+        }
+
+        return CarResource::collection(Car::paginate(10));
     }
 
     /**
@@ -35,9 +36,12 @@ class CarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Car $car)
     {
-        $car = Car::findOrFail($id);
+        if ($this->include('owner')){
+            return new CarResource($car->load('user'));
+        }
+
         return new CarResource($car);
     }
 

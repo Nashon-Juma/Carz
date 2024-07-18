@@ -27,6 +27,9 @@ class UserResource extends JsonResource
                     'updated_at' => $this->updated_at->toIso8601String(),
                 ]),
             ],
+            'includes'=>
+                new CarResource($this->whenLoaded('car'))
+            ,
             'links' => [
                 'self' => route('users.show', ['user' => $this->id]),
             ],
