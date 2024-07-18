@@ -11,11 +11,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Car extends Model
 {
     use HasFactory;
-    protected $fillable = ['model', 'year', 'features'];
+    protected $fillable = ['model', 'year',];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 }
-  

@@ -15,7 +15,8 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::paginate(5);
+        if 
+        $cars = Car::paginate(10);
         return CarResource::collection($cars);
     }
 

@@ -38,6 +38,9 @@ class CarResource extends JsonResource
                 'leasing' => $this->leasing,
                 'price_per_hour' => $this->price_per_hour
             ],
+            'includes'=>[
+                new UserResource($this->user)
+            ],
             'links' => [
                 'self' => route('cars.show', ['car' => $this->id]),
             ],
@@ -46,11 +49,7 @@ class CarResource extends JsonResource
                     'data' => [
                         'type' => 'user',
                         'id' => (string) $this->user_id,
-                        'name' => $this->user->name,
-                    ],
-                    'links' => [
-                        'self' => 'TODO',       //TODO
-                    ],
+                    ]
                 ],
             ],
         ];
